@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مفاجأة غالية</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* استخدام الصورة الخلفية المرفقة */
+            background: url('32530.jpg') no-repeat center center/cover;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* طبقة داكنة خفيفة لتوضيح النصوص */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            color: #fff;
+            transition: all 0.5s ease-in-out;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            animation: fadeIn 0.8s ease-in-out forwards;
+            white-space: pre-line;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 117, 140, 0.6);
+        }
+
+        /* الشاشة النهائية لكلمة أحبك */
+        .final-screen {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 15, 30, 0.95);
+            z-index: 10;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #ff4757;
+        }
+
+        .love-text {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.6;
+            padding: 20px;
+            text-shadow: 0 0 20px rgba(255, 71, 87, 0.8);
+            animation: scaleUp 1.5s infinite alternate;
+            white-space: pre-line;
+        }
+
+        /* الأنميشن */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleUp {
+            0% { transform: scale(0.95); text-shadow: 0 0 10px rgba(255, 71, 87, 0.6); }
+            100% { transform: scale(1.05); text-shadow: 0 0 30px rgba(255, 71, 87, 1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="box">
+        <div id="step1">
+            <h2>أهلاً ملاكي الغاليه ❤️
+نورتي هالمكان بوجودج والله كأن الصفحة صارت أحلى بس لأنج فتحتيها ✨
+وجودج هنا مو صدفة هذا شي أنا كنت مخططله من زمان...</h2>
+            <button class="btn" onclick="nextStep(2)">الانتقال إلى التالي</button>
+        </div>
+
+        <div id="step2" style="display: none;">
+            <h2>ما أعرف شلون أوصفها بالضبط..
+بس أنتي مو شخص عادي بالنسبة إلي 🌹
+بيج شي مختلف يخلي الواحد يرتاح..
+وأحبج بطريقة هادئة بدون ضجيج بس حقيقية ❤️</h2>
+            <button class="btn" onclick="nextStep(3)">التالي ✨</button>
+        </div>
+
+        <div id="step3" style="display: none;">
+            <h2>يمكن ما تحسين بهالشي..
+بس صدقيني أنتي دايم ببالي 💭
+اسمج يمر على فكري بدون سبب..
+وصرت أفكر بيج أكثر مما أتوقع 🥰</h2>
+            <button class="btn" onclick="showLoveScreen()">النهاية ❤️</button>
+        </div>
+    </div>
+
+    <div class="final-screen" id="finalScreen">
+        <div class="love-text">وجودج بحد ذاته شي حلو..
+وأتمنى أكون جزء بسيط من يومج
+مثل ما صرتي شي كبير بتفكيري ❤️</div>
+    </div>
+
+    <script>
+        function nextStep(step) {
+            if (step === 2) {
+                document.getElementById('step1').style.display = 'none';
+                document.getElementById('step2').style.display = 'block';
+            } else if (step === 3) {
+                document.getElementById('step2').style.display = 'none';
+                document.getElementById('step3').style.display = 'block';
+            }
+        }
+
+        function showLoveScreen() {
+            document.getElementById('box').style.display = 'none';
+            const final = document.getElementById('finalScreen');
+            final.style.display = 'flex';
+
+            // يغلق الرابط تلقائياً بعد 6 ثوانٍ ليمنحها وقتاً كافياً لقراءة العبارة الأخيرة الجميلة
+            setTimeout(() => {
+                window.close();
+                final.innerHTML = '<div class="love-text" style="font-size: 2rem;">خذي هديتج الآن.. 😉❤️</div>';
+            }, 6000);
+        }
+    </script>
+</body>
+</html>
